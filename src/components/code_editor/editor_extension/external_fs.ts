@@ -32,6 +32,7 @@ export function asyncLoadExternalTextFile(accept_format: string): Promise<Extern
             }
 
             const F = fileList[0];
+            if (F === undefined) return reject(new internal_error("No file was selected"));
             _loadExternalTextFile(F, false).then(resolve);
         }
 
@@ -55,6 +56,7 @@ export function asyncLoadExternalFile(accept_format: string): Promise<GeneralExt
             }
 
             const F = fileList[0];
+            if (F === undefined) return reject(new internal_error("No file was selected"));
             const path = F.name;
 
             if (path.endsWith("o0") || path.endsWith("o1")) {

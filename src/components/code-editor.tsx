@@ -86,6 +86,8 @@ export default class CodeEditor extends React.Component
                     execLine     ={vm === undefined ? 0 : vm.state.CurrLineNumber}
                     breakpointVal={this.props.app_state.BC0BreakPoints}
                     updateBrkPts ={ns => this.props.set_app_state({BC0BreakPoints: new Set(ns)})}
+                    app_state     ={this.props.app_state}
+                    set_app_state ={(ns, cb) => this.props.set_app_state(ns, cb)}
                 />
             </>;
         }

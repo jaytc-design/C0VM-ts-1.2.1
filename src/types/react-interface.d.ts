@@ -123,6 +123,8 @@ interface BC0EditorProps {
     execLine      : number,
     breakpointVal : Set<BreakPoint>,
     updateBrkPts  : (ns: BreakPoint[]) => void,
+    app_state     : C0VMApplicationState,
+    set_app_state : SetAppStateHook["set_app_state"],
 }
 
 interface TextEditorProps {
