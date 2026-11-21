@@ -80,13 +80,23 @@ export default class BC0Editor extends React.Component<BC0EditorProps>
                         theme={BC0LightTheme}
                         basicSetup={false}
                         value = {this.props.editorValue}
+                        onUpdate={(update) => {
+                            if (update.docChanged) {
+                                this.props.set_app_state({
+                                    BC0SourceCode: update.state.doc.toString(),
+                                    C0Runtime: undefined,
+                                    BC0BreakPoints: new Set(),
+                                    contentChanged: false,
+                                });
+                            }
+                        }}
                         extensions={[
                             breakpoint_extension,
                             basicSetup(),
                             language.of(BC0Language),
                             execLineHighlighter(this.props.execLine, "light"),
                         ]}
-                        editable={false}
+                        editable={true}
                     />
                 </div>
     }
