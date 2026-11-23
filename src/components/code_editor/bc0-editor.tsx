@@ -26,11 +26,12 @@ export default class BC0Editor extends React.Component<BC0EditorProps>
 
         const loadBC0 = async ({path, content}: GeneralExternalFile) => {
             const bc0Content = typeof content === "string" ? content : "";
-            if (!path.toLowerCase().endsWith(".bc0") ||
+            if (!(path.toLowerCase().endsWith(".bc0") ||
+                path.toLowerCase().endsWith(".bc1")) || 
                 !bc0Content.toUpperCase().startsWith("C0 C0 FF EE")) {
                 globalThis.MSG_EMITTER.warn(
-                    "Invalid BC0 File",
-                    "Please select a valid .bc0 bytecode file."
+                    "Invalid BC0, BC1 File",
+                    "Please select a valid .bc0, .bc1 bytecode file."
                 );
                 return;
             }
@@ -80,7 +81,7 @@ export default class BC0Editor extends React.Component<BC0EditorProps>
                             language.of(BC0Language),
                             execLineHighlighter(this.props.execLine, "light"),
                             LoadDocumentPlugin(
-                                ".bc0",
+                                ".bc0, .bc1",
                                 {app_state: this.props.app_state, set_app_state: this.props.set_app_state},
                                 () => {},
                                 loadBC0,
